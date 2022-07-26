@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">MVI Example</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="age">Age</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="update_message">Person updated</string>
+    <string name="delete_message">Person deleted</string>
+    <string name="invalid_name">Invalid name</string>
+    <string name="invalid_surname">Invalid surname</string>
+    <string name="invalid_age">Invalid age</string>
+    <string name="people">People</string>
+    <string name="person">Person</string>
+</resources>
