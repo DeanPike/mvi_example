@@ -124,7 +124,7 @@ class PersonDetailFragment : Fragment() {
         }
 
         binding.deleteButton.setOnClickListener {
-            viewModel.setEvent(PersonDetailContract.PersonDetailEvent.DeletePersonEvent(viewModel.uiState.value.person?.id))
+            viewModel.setEvent(PersonDetailContract.PersonDetailEvent.DeletePersonEvent)
         }
         binding.saveButton.setOnClickListener {
             val person = Person(

@@ -33,7 +33,7 @@ class PersonDetailViewModel @Inject constructor(
                 savePerson(event.person)
             }
             is PersonDetailContract.PersonDetailEvent.DeletePersonEvent -> {
-                deletePerson(event.id)
+                deletePerson(uiState.value.person?.id)
             }
             is PersonDetailContract.PersonDetailEvent.CreateNewPerson -> {
                 createPerson()

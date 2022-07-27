@@ -18,7 +18,7 @@ class PersonDetailContract {
     sealed class PersonDetailEvent : UiEvent {
         data class LoadPersonEvent(val id: String) : PersonDetailEvent()
         data class UpdatePersonEvent(val person: Person) : PersonDetailEvent()
-        data class DeletePersonEvent(val id: String?) : PersonDetailEvent()
+        object DeletePersonEvent : PersonDetailEvent()
         object CreateNewPerson : PersonDetailEvent()
     }
 
