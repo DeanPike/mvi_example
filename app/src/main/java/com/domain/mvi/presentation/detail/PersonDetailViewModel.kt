@@ -45,15 +45,13 @@ class PersonDetailViewModel @Inject constructor(
         cancelJob()
         job = viewModelScope.launch(dispatcherProvider.getMainDispatcher()) {
             setState {
-                copy(state = PersonDetailContract.ScreenState.LOADING,
-                    isProcessing = true)
+                copy(state = PersonDetailContract.ScreenState.LOADING)
             }
             val person = service.getPersonById(id)
             setState {
                 copy(
                     state = PersonDetailContract.ScreenState.LOADED,
-                    person = person,
-                    isProcessing = false
+                    person = person
                 )
             }
         }
@@ -74,7 +72,7 @@ class PersonDetailViewModel @Inject constructor(
             } else {
                 setState {
                     copy(
-                        isProcessing = true
+                        state = PersonDetailContract.ScreenState.UPDATING
                     )
                 }
                 if (person.id == null) {
@@ -87,7 +85,6 @@ class PersonDetailViewModel @Inject constructor(
                         isValidName = true,
                         isValidSurname = true,
                         isValidAge = true,
-                        isProcessing = false,
                         state = PersonDetailContract.ScreenState.UPDATED
                     )
                 }
@@ -102,15 +99,14 @@ class PersonDetailViewModel @Inject constructor(
             if (id != null) {
                 setState {
                     copy(
-                        isProcessing = true
+                        state = PersonDetailContract.ScreenState.UPDATING
                     )
                 }
                 service.deletePersonById(id)
                 setState {
                     copy(
                         state = PersonDetailContract.ScreenState.NEW,
-                        person = null,
-                        isProcessing = false
+                        person = null
                     )
                 }
                 setEffect { PersonDetailContract.PersonDetailEffect.PersonDeletedEffect }

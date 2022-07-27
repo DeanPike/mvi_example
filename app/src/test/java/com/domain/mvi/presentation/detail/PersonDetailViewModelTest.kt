@@ -46,14 +46,11 @@ class PersonDetailViewModelTest : TestBase() {
         viewModel.setEvent(PersonDetailContract.PersonDetailEvent.LoadPersonEvent(personId))
 
         viewModel.uiState.test {
-            skipItems(1)
             awaitItem().apply {
-                assertThat(isProcessing).isTrue
                 assertThat(state).isEqualTo(PersonDetailContract.ScreenState.LOADING)
             }
             awaitItem().apply {
                 assertThat(state).isEqualTo(PersonDetailContract.ScreenState.LOADED)
-                assertThat(isProcessing).isFalse
                 assertThat(person).isEqualTo(expectedPerson)
             }
         }
@@ -70,12 +67,11 @@ class PersonDetailViewModelTest : TestBase() {
 
         viewModel.uiState.test {
             skipItems(1)
-            assertThat(awaitItem().isProcessing).isTrue
+            assertThat(awaitItem().state).isEqualTo(PersonDetailContract.ScreenState.UPDATING)
             awaitItem().apply {
                 assertThat(isValidName).isTrue
                 assertThat(isValidSurname).isTrue
                 assertThat(isValidAge).isTrue
-                assertThat(isProcessing).isFalse
                 assertThat(state).isEqualTo(PersonDetailContract.ScreenState.UPDATED)
             }
         }

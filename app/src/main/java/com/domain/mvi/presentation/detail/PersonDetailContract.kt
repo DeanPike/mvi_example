@@ -11,8 +11,7 @@ class PersonDetailContract {
         val person: Person? = null,
         val isValidName: Boolean = true,
         val isValidSurname: Boolean = true,
-        val isValidAge: Boolean = true,
-        val isProcessing: Boolean = false
+        val isValidAge: Boolean = true
     ) : UiState
 
     sealed class PersonDetailEvent : UiEvent {
@@ -32,6 +31,7 @@ class PersonDetailContract {
         LOADED,
         ERROR,
         NEW,
+        UPDATING,
         UPDATED
     }
 }

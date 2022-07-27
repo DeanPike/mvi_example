@@ -53,10 +53,15 @@ class PersonDetailFragment : Fragment() {
                     binding.nameLayout.isErrorEnabled = !state.isValidName
                     binding.surnameLayout.isErrorEnabled = !state.isValidSurname
                     binding.ageLayout.isErrorEnabled = !state.isValidAge
-                    binding.progress.visibility = if(state.isProcessing) View.VISIBLE else View.GONE
+
+                    if (state.state != PersonDetailContract.ScreenState.LOADING &&
+                            state.state != PersonDetailContract.ScreenState.UPDATING) {
+                        binding.progress.visibility =  View.GONE
+                    }
 
                     when (state.state) {
                         PersonDetailContract.ScreenState.LOADING -> {
+                            binding.progress.visibility = View.VISIBLE
                         }
                         PersonDetailContract.ScreenState.LOADED -> {
                             with(binding) {
@@ -88,6 +93,9 @@ class PersonDetailFragment : Fragment() {
                                 surname.setText("")
                                 age.setText("")
                             }
+                        }
+                        PersonDetailContract.ScreenState.UPDATING -> {
+                            binding.progress.visibility = View.VISIBLE
                         }
                         PersonDetailContract.ScreenState.UPDATED -> {
                             binding.deleteButton.visibility = View.VISIBLE
